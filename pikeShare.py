@@ -207,29 +207,23 @@ def user_stats(df):
 def display_raw_data(df):
     """Displays 5 rows of raw data at a time based on user input."""
     start_row = 0  # Initialize the starting row index
-    end_row = 5    # Number of rows to display at a time
+    step = 5    # Number of rows to display at a time
     
     while True:
-        # Ask the user if they want to see raw data
         show_data = input('\nWould you like to see 5 rows of raw data? Enter yes or no: ').lower()
         
-        # If user says 'yes', display 5 rows of data
         if show_data == 'yes':
-            print(df.iloc[start_row:end_row])
-            start_row += 5
-            end_row += 5
-            
-            # If we've reached the end of the data, break out of the loop
             if start_row >= len(df):
                 print("\nYou've reached the end of the data.")
                 break
-        # If the user says 'no', exit the loop
+            print(df.iloc[start_row:start_row + step])
+            start_row += step
         elif show_data == 'no':
             print("\nYou chose not to display more raw data.")
             break
-        # Handle invalid input
         else:
             print("\nInvalid input. Please enter 'yes' or 'no'.")
+
 
 def main():
     pd.set_option('display.max_columns', None)  # This will display all columns
