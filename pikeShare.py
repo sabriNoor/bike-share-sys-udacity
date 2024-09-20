@@ -170,39 +170,40 @@ def trip_duration_stats(df):
 
 def user_stats(df):
     """Displays statistics on bikeshare users."""
-
+    
     print('\nCalculating User Stats...\n')
     start_time = time.time()
 
-    # TO DO: Display counts of user types
+    # Display counts of user types
     user_types = df['User Type'].value_counts()
-    print('counts of user types')
-    print(user_types)
+    print('Counts of User Types:')
+    for user_type, count in user_types.items():
+        print(f'  {user_type}: {count}')
 
-    # TO DO: Display counts of gender
+    # Display counts of gender
     if 'Gender' in df.columns:
         gender_counts = df['Gender'].value_counts()
         print('\nCounts of Gender:')
-        print(gender_counts)
+        for gender, count in gender_counts.items():
+            print(f'  {gender}: {count}')
     else:
         print('\nNo Gender data available.')
 
-
-    # TO DO: Display earliest, most recent, and most common year of birth
+    # Display earliest, most recent, and most common year of birth
     if 'Birth Year' in df.columns:
         earliest_year = int(df['Birth Year'].min())
         most_recent_year = int(df['Birth Year'].max())
         most_common_year = int(df['Birth Year'].mode()[0])
 
-        print('\nEarliest Year of Birth:', earliest_year)
-        print('Most Recent Year of Birth:', most_recent_year)
-        print('Most Common Year of Birth:', most_common_year)
+        print(f'\nEarliest Year of Birth: {earliest_year}')
+        print(f'Most Recent Year of Birth: {most_recent_year}')
+        print(f'Most Common Year of Birth: {most_common_year}')
     else:
         print('\nNo Birth Year data available.')
 
-
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+
 
 def display_raw_data(df):
     """Displays 5 rows of raw data at a time based on user input."""
