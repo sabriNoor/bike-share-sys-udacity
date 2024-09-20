@@ -7,6 +7,7 @@ This python project analyzes bike-sharing data for three major cities in the Uni
 * Dataset Information
 * Dependencies
 * How to Run
+* License
 
 
 ## Datasets inf
@@ -35,4 +36,6 @@ Before running the script, ensure you have the following dependencies installed:
 4. The program will prompt you for the city, month, and day for which you want to analyze the data.
 
 
+## License
 
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
