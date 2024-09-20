@@ -7,55 +7,52 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'washington': 'washington.csv' }
 
 def get_filters():
-    """
-    Asks user to specify a city, month, and day to analyze.
-
-    Returns:
-        (str) city - name of the city to analyze
-        (str) month - name of the month to filter by, or "all" to apply no month filter
-        (str) day - name of the day of week to filter by, or "all" to apply no day filter
-    """
     print('Hello! Let\'s explore some US bikeshare data!')
     
-    # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-    
+    retry_limit = 3
+
+    # Handle city input
+    city_attempts = 0
     while True:
-        
-        # as User inputs should be made case insensitive
         city = input("Please enter the city (Chicago, New York City, Washington): ").lower()
-        #check if input is valid choice
         if city in ['chicago', 'new york city', 'washington']:
             break
         else:
+            city_attempts += 1
             print("Invalid input. Please enter either Chicago, New York City, or Washington.")
+            if city_attempts >= retry_limit:
+                print("Too many invalid attempts. Exiting...")
+                exit()
     
-    
-    # TO DO: get user input for month (all, january, february, ... , june)
-
+    # Handle month input
+    month_attempts = 0
     while True:
-        # as User inputs should be made case insensitive
         month = input("Please enter the month (January, February, ..., June) or 'all' for no filter: ").lower()
-        #check if input is valid choice
         if month in ['january', 'february', 'march', 'april', 'may', 'june', 'all']:
             break
         else:
+            month_attempts += 1
             print("Invalid input. Please enter a valid month from January to June, or 'all'.")
+            if month_attempts >= retry_limit:
+                print("Too many invalid attempts. Exiting...")
+                exit()
     
-    
-
-    # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
+    # Handle day input
+    day_attempts = 0
     while True:
-        # as User inputs should be made case insensitive
         day = input("Please enter the day of the week (Monday, Tuesday, ..., Sunday) or 'all' for no filter: ").lower()
-        #check if input is valid choice
         if day in ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all']:
             break
         else:
+            day_attempts += 1
             print("Invalid input. Please enter a valid day of the week or 'all'.")
-
+            if day_attempts >= retry_limit:
+                print("Too many invalid attempts. Exiting...")
+                exit()
 
     print('-'*40)
     return city, month, day
+
 
 
 def load_data(city, month, day):
